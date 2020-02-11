@@ -1,0 +1,27 @@
+<div class="ventana" id="vent">
+    
+    <div class="card shadow mb-4">
+        <div id="cerrar">
+            <a href="javascript:cerrar()" class="d-none d-sm-inline-block btn btn-sm btn-google shadow-sm">
+                <i class="fas fa-window-close fa-sm text-white-50"></i></a>
+        </div>
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Agregar Nota</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <form class="user" action="/producto/agregar" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="titulo_nota" placeholder="Titulo Nota">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="descripcion" placeholder="Descripción">
+                        </div>
+                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                      Agregar
+                    </button>
+                    </form>
+                </div>
+              </div>
+</div>

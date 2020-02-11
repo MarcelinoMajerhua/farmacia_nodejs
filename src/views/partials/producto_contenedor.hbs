@@ -1,0 +1,28 @@
+<div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Agregar Producto</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <form class="user" action="/producto/agregar" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="codigo" placeholder="Codigo">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="stock" placeholder="Cantidad">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="precio" placeholder="Precio Unidad">
+                        </div>
+                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                      Agregar
+                    </button>
+                    </form>
+                </div>
+              </div>
+</div>
