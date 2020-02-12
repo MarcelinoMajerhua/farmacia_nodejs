@@ -4,7 +4,7 @@ const Producto= require('../models/Producto');
 
 productoCtrl.renderProducto = async (req, res) => {
     const producto = await Producto.find();
-    res.render('producto/nuevo-producto',{ producto });
+    res.render('producto/nuevo-producto',{ producto ,user:req.user});
 };
 
 productoCtrl.agregar_producto= async (req,res)=>{

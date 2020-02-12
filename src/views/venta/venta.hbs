@@ -9,8 +9,8 @@
       <div id="content">
 
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-    <!-- Topbar Search -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <!-- Topbar Search -->
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Nav Item - User Information -->
@@ -35,9 +35,36 @@
           <!-- Content Row -->
 
           <div class="row">
-            <!-- Pie Chart -->
-            {{>producto_contenedor}}
-
+            <!-- contenedor para la venta  -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Vender Producto</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <form class="user" action="/producto/agregar" method="POST">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="codigo" placeholder="Codigo">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="stock" placeholder="Cantidad a vender">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" name="precio" placeholder="Descuento">
+                        </div>
+                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                      Vender
+                    </button>
+                    </form>
+                </div>
+              </div>
+        </div>
+<!-- contenedor para la venta  -->
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
             <div class="card shadow mb-4">

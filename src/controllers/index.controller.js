@@ -4,12 +4,9 @@ indexCtrl.renderIndex = (req, res) => {
   res.render('index');
 };
 
-indexCtrl.renderAbout = (req, res) => {
-  res.render('about');
-};
 
 indexCtrl.renderInicio=(req,res)=>{
-  res.render("general/inicio");
+  res.render("general/inicio",{user: req.user});
 };
 
 module.exports = indexCtrl;

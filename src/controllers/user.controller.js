@@ -7,7 +7,7 @@ const User = require('../models/User');
 const passport = require("passport");
 
 usersCtrl.renderSignUpForm = (req, res) => {
-  res.render('users/signup');
+    res.render('users/signup');
 };
 
 usersCtrl.singup = async (req, res) => {
