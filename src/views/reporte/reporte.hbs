@@ -1,0 +1,139 @@
+<div id="wrapper">
+   <!-- Sidebar -->
+   {{>barra_lateral}}
+   <!-- End of Sidebar -->
+   <!-- Content Wrapper -->
+   <div id="content-wrapper" class="d-flex flex-column">
+
+     <!-- Main Content -->
+     <div id="content">
+       <!-- Topbar -->
+       <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+       <!-- Topbar Search -->
+           <!-- Topbar Navbar -->
+           <ul class="navbar-nav ml-auto">
+               <!-- Nav Item - User Information -->
+               <li class="nav-item dropdown no-arrow">
+                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.nombre}}</span>
+                   <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-sign-out-alt fa-sm text-white-50"></i> Salir</a>
+                   <a href="javascript:abrir()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-address-book fa-sm text-white-50"></i> Nota</a>
+               </li>
+           </ul>
+       </nav>
+       <!-- End of Topbar -->
+
+       <!-- Begin Page Content -->
+       <div class="container-fluid">
+
+         <!-- Page Heading -->
+         <div class="d-sm-flex align-items-center justify-content-between mb-4">
+           <h1 class="h3 mb-0 text-gray-800">Reporte</h1>
+         </div>
+
+         <!-- ptegatina-->
+         <!-- Content Row -->
+
+         <div class="row">
+           <!-- contenedor para la venta  -->
+           <div class="col-xl-4 col-lg-5">
+             <div class="card shadow mb-4">
+               <!-- Card Header - Dropdown -->
+               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                 <h6 class="m-0 font-weight-bold text-primary">Vender Producto</h6>
+               </div>
+               <!-- Card Body -->
+               <div class="card-body">
+                 <form class="user" action="/tarea/reporte_personal" method="post">
+                    <div class="form-group">
+                      <select value="inicial"class="form-control" name="nombre">
+                        <option>Todos</option>
+                        {{#each usuario}}
+                         <option>{{nombre}}</option>
+                       {{/each}}
+                       </select>
+                    </div>
+                    <div class="form-group">
+                      <input type="date" name="fecha" class="form-control form-control-user" >
+                    </div>
+                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                      Consultar
+                    </button>
+
+                 </form>
+               </div>
+             </div>
+       </div>
+<!-- contenedor para la venta  -->
+           <!-- Area Chart -->
+           <div class="col-xl-8 col-lg-7">
+           <div class="card shadow mb-4">
+           <div class="card-header py-3">
+             <h6 class="m-0 font-weight-bold text-primary">Lista de Ventas</h6>
+           </div>
+           <div class="card-body">
+             <div class="table-responsive">
+                 <div class="dataTables_wrapper dt-bootstrap4" id="dataTable_wrapper">
+                     <div class="row">
+                         <div class="col-sm-12">
+                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                  <thead>
+                                   <tr>
+                                     <th>Vendedor</th>
+                                     <th>Fecha</th>
+                                     <th>Producto</th>
+                                     <th>Cantidad</th>
+                                     <th>Precio</th>
+                                   </tr>
+                                 </thead>
+                                 <tfoot>
+                                   <tr>
+                                     <th>Vendedor</th>
+                                     <th>Fecha</th>
+                                     <th>Producto</th>
+                                     <th>Cantidad</th>
+                                     <th>Precio</th>
+                                   </tr>
+                                 </tfoot>
+                                 <tbody>
+                                   {{#each venta}}
+                                     <tr>
+                                       <td>{{vendedor}}</td>
+                                       <td>{{fecha}}</td>
+                                       <td>{{nombre_producto}}</td>
+                                       <td>{{cantidad}}</td>
+                                       <td>{{precio_venta}}</td>
+                                     </tr>
+                                   {{/each}}
+                                 </tbody>
+                             </table>
+                         </div>
+                     </div>
+                 </div>
+           </div>
+           </div>
+         </div>
+</div>
+         </div>
+       <div class="row">
+           {{>producto_pegatina}}
+         </div>
+       </div>
+       <!-- /.container-fluid -->
+
+     </div>
+     <!-- End of Main Content -->
+
+     <!-- Footer -->
+     <footer class="sticky-footer bg-white">
+       <div class="container my-auto">
+         <div class="copyright text-center my-auto">
+           <span>Copyright &copy; Your Website 2019</span>
+         </div>
+       </div>
+     </footer>
+     <!-- End of Footer -->
+
+   </div>
+   <!-- End of Content Wrapper -->
+
+ </div>

@@ -6,7 +6,7 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <form class="user" action="/producto/agregar" method="POST">
+                    <form class="user" action="/tarea/agregar_producto" method="POST">
                         <div class="form-group">
                             <input type="text" class="form-control form-control-user" name="codigo" placeholder="Codigo">
                         </div>
@@ -14,10 +14,10 @@
                             <input type="text" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" name="stock" placeholder="Cantidad">
+                            <input type="number" min="1" class="form-control form-control-user" name="stock" placeholder="Cantidad">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" name="precio" placeholder="Precio Unidad">
+                            <input type="number"  class="form-control form-control-user" name="precio" placeholder="Precio Unidad">
                         </div>
                     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                       Agregar

@@ -7,9 +7,8 @@
 
       <!-- Main Content -->
       <div id="content">
-
         <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
         <!-- Topbar Search -->
             <!-- Topbar Navbar -->
             <ul class="navbar-nav ml-auto">
@@ -44,18 +43,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <form class="user" action="/producto/agregar" method="POST">
+                    <form class="user" action="/tarea/venta" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" name="codigo" placeholder="Codigo">
+                            <input type="text"  value="{{codigo}}" class="form-control form-control-user" name="condigo_producto" placeholder="Codigo" readonly>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto">
+                            <input type="text"  value="{{nombre}}" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre" readonly>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" name="stock" placeholder="Cantidad a vender">
+                            <input type="number" min="1" max="{{cantidad}}" class="form-control form-control-user" name="cantidad" placeholder="Cantidad a vender">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" name="precio" placeholder="Descuento">
+                            <input type="number" min="{{precio}}" value="{{precio}}"class="form-control form-control-user" name="precio_venta" placeholder="Precio de venta">
                         </div>
                     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                       Vender
@@ -83,6 +82,7 @@
                                       <th>Nombre</th>
                                       <th>Cantidad Disponible</th>
                                       <th>Precio Unidad</th>
+                                      <th>Vender</th>
                                     </tr>
                                   </thead>
                                   <tfoot>
@@ -91,17 +91,23 @@
                                       <th>Nombre</th>
                                       <th>Cantidad Disponible</th>
                                       <th>Precio Unidad</th>
+                                      <th>Vender</th>
                                     </tr>
                                   </tfoot>
                                   <tbody>
-                                        
                                     {{#each producto}}
-                                        <tr>
-                                          <td>{{ codigo }}</td>
-                                          <td>{{nombre_producto}}</td>
-                                          <td>{{stock}}</td>
-                                          <td>{{precio}}</td>
-                                        </tr>
+
+                                      <tr>
+                                        <td>{{ codigo }}</td>
+                                        <td>{{nombre_producto}}</td>
+                                        <td>{{stock}}</td>
+                                        <td>{{precio}}</td>
+                
+                                        <td>
+                                          <a href="/tarea/venta/{{_id}}"><i class="fas fa-shopping-cart"></i></a>
+                                        </td>
+                                      </tr>
+
                                     {{/each}}
                                   </tbody>
                               </table>

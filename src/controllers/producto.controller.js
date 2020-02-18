@@ -11,6 +11,6 @@ productoCtrl.agregar_producto= async (req,res)=>{
     const {codigo,nombre_producto,stock,precio}=req.body;
     const newProducto = new Producto({codigo,nombre_producto,stock,precio});
     await newProducto.save();
-    res.redirect("/producto/agregar");
+    res.redirect("/tarea/agregar_producto");
 }
 module.exports = productoCtrl;
