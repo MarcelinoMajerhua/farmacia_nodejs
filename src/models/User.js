@@ -7,7 +7,7 @@ const UserSchema = new Schema({
     password:{type:String,required:true},
     dni:{type:String,required:true},
     nombre:{type:String,require:true},
-    categoria:{type:String,required:true}
+    categoria:{type:Boolean,required:true}
 });
 
 

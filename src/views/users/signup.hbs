@@ -1,54 +1,107 @@
 
 <div id="wrapper">
-    {{>barra_lateral}}
-     <div class="container">
+   <!-- Sidebar -->
+   {{>barra_lateral}}
+   <div id="content-wrapper" class="d-flex flex-column">
 
-    <!-- Outer Row -->
-    <div class="row justify-content-center">
+     <div id="content">
 
-      <div class="col-xl-5 col-lg-6 col-md-4.5">
+       <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+           <ul class="navbar-nav ml-auto">
+               <!-- Nav Item - User Information -->
+               <li class="nav-item dropdown no-arrow">
+                   <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.nombre}}</span>
+                   <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-sign-out-alt fa-sm text-white-50"></i> Salir</a>
+                   <a href="javascript:abrir()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-address-book fa-sm text-white-50"></i> Nota</a>
+               </li>
+           </ul>
+       </nav>
 
-        <div class="card o-hidden border-0 shadow-lg my-5">
-          <div class="card-body p-0">
-            <!-- Nested Row within Card Body -->
-              <div class="col-lg-6"></div>
-                <div class="p-5">
-                  <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Farmacia</h1>
-                  </div>
-                  <form class="user" action="/users/signup" method="POST">
-                    <div class="form-group">
-                      <input type="email" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Ingrese correo">
-                    </div>
-                    <div class="form-group">
-                      <input type="password" class="form-control form-control-user" name="password"  placeholder="Contraseña">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" name="dni" placeholder="Dni">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" name="nombre"  placeholder="Nombre">
-                    </div>
-                    <div class="form-group">
-                      <input type="text" class="form-control form-control-user" name="categoria" placeholder="categoria">
-                    </div>
-                    <div class="form-group">
-                      <div class="custom-control custom-checkbox small">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                      </div>
-                    </div>
-                    <button class="btn btn-primary btn-block">
-                      Agregar 
-                    </button>
-                    <hr>
-                  </form>
-                  <hr>
-                </div>
-              </div>
-          </div>
-        </div>
+       <!-- End of Topbar -->
 
-      </div>
+       <!-- Begin Page Content -->
+       <div class="container-fluid">
+         <!-- Page Heading -->
+         <div class="d-sm-flex align-items-center justify-content-between mb-4">
+           <h1 class="h3 mb-0 text-gray-800">Resumen</h1>
+         </div>
 
-    </div>
-</div>
+         <div class="row">
+           <!-- Pie Chart -->
+           {{>signup_barra}}
+
+           <!-- Area Chart -->
+           <div class="col-xl-8 col-lg-7">
+           <div class="card shadow mb-4">
+           <div class="card-header py-3">
+             <h6 class="m-0 font-weight-bold text-primary">Lista de Productos</h6>
+           </div>
+           <div class="card-body">
+             <div class="table-responsive">
+                 <div class="dataTables_wrapper dt-bootstrap4" id="dataTable_wrapper">
+                     <div class="row">
+                         <div class="col-sm-12">
+                             <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0" role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                  <thead>
+                                   <tr>
+                                     <th>Nombre</th>
+                                     <th>Dni</th>
+                                     <th>Categoria</th>
+                                     <th>Editar</th>
+                                     <th>Borrar</th>
+                                   </tr>
+                                 </thead>
+                                 <tfoot>
+                                   <tr>
+                                     <th>Nombre</th>
+                                     <th>Dni</th>
+                                     <th>Categoria</th>
+                                     <th>Editar</th>
+                                     <th>Borrar</th>
+                                   </tr>
+                                 </tfoot>
+                                 <tbody>
+
+                                   {{#each usuario}}
+                                       <tr>
+                                         <td>{{nombre}}</td>
+                                         <td>{{dni}}</td>
+                                         {{#if categoria}}
+                                         <td>Administrador</td>
+                                         {{else}}
+                                         <td>Vendedor</td>
+                                         {{/if}}
+                                         <td><a href="/users/signup/{{_id}}"><i class="fas fa-edit"></i></a></td>
+                                         <td><a href="/users/signup/{{_id}}"><i class="fas fa-user-times"></i></a></td>
+                                       </tr>
+                                   {{/each}}
+                                 </tbody>
+                             </table>
+                         </div>
+                     </div>
+                 </div>
+           </div>
+           </div>
+         </div>
+         </div>
+         </div>
+       </div>
+       <!-- /.container-fluid -->
+
+     </div>
+     <!-- End of Main Content -->
+
+     <!-- Footer -->
+     <footer class="sticky-footer bg-white">
+       <div class="container my-auto">
+         <div class="copyright text-center my-auto">
+           <span>Copyright &copy; Your Website 2019</span>
+         </div>
+       </div>
+     </footer>
+     <!-- End of Footer -->
+
+   </div>
+   <!-- End of Content Wrapper -->
+
+ </div>

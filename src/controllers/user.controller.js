@@ -6,8 +6,20 @@ const User = require('../models/User');
 // Modules
 const passport = require("passport");
 
-usersCtrl.renderSignUpForm = (req, res) => {
-    res.render('users/signup');
+usersCtrl.renderSignUpForm =  async(req, res) => {
+    const usuario = await User.find();
+    res.render('users/signup',{usuario});
+};
+
+usersCtrl.renderSignUpForm_edit =  async(req, res) => {
+    const usuario = await User.find();
+    const usuario_edit = await User.findById(req.params.id);
+    res.render('users/signup',{
+      usuario,
+      nombre:usuario_edit.nombre,
+      dni:usuario_edit.dni,
+      categoria:usuario_edit.categoria
+    });
 };
 
 usersCtrl.singup = async (req, res) => {

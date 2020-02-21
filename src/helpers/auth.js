@@ -8,4 +8,12 @@ helpers.isAuthenticated = (req, res, next) => {
   res.redirect('/');
 };
 
+helpers.isAdmin=(req,res,next)=>{
+  if(req.user.categoria){
+    return next();
+  }
+  res.redirect('/inicio');
+}
+
+
 module.exports = helpers;

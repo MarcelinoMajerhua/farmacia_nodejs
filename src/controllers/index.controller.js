@@ -6,7 +6,7 @@ indexCtrl.renderIndex = (req, res) => {
 
 
 indexCtrl.renderInicio=(req,res)=>{
-  res.render("general/inicio",{user: req.user});
+  res.render("general/inicio",{user:req.user});
 };
 
 module.exports = indexCtrl;

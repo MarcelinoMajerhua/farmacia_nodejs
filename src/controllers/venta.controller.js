@@ -21,7 +21,6 @@ function addZero(i) {
     const mes = addZero(fecha_hoy.getMonth()+1);
     const anio = fecha_hoy.getFullYear();
     const fecha =anio+"-"+mes+"-"+dia;
-    console.log(fecha);
     const {condigo_producto,nombre_producto,cantidad,precio_venta}=req.body;
     const newVenta = new Venta({condigo_producto,nombre_producto,cantidad,precio_venta,fecha,vendedor});
     await newVenta.save();

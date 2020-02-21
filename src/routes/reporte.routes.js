@@ -3,9 +3,9 @@ const router = express.Router();
 
 //Controllers
 const {renderReporte_personal,renderReporte_all} =require("../controllers/reporte.controller");
-const {isAuthenticated} = require("../helpers/auth");
+const {isAuthenticated,isAdmin} = require("../helpers/auth");
 
-router.get("/tarea/reporte_all",isAuthenticated,renderReporte_all);
-router.post("/tarea/reporte_personal",isAuthenticated,renderReporte_personal);
+router.get("/tarea/reporte_all",isAuthenticated,isAdmin,renderReporte_all);
+router.post("/tarea/reporte_personal",isAuthenticated,isAdmin,renderReporte_personal);
 
 module.exports=router;
