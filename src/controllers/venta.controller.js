@@ -17,11 +17,12 @@ function addZero(i) {
 }
     const vendedor = req.user.nombre;
     const fecha_hoy = new Date();
-    const dia = addZero(fecha_hoy.getDate());
-    const mes = addZero(fecha_hoy.getMonth()+1);
-    const anio = fecha_hoy.getFullYear();
-    const fecha =anio+"-"+mes+"-"+dia;
-    const {condigo_producto,nombre_producto,cantidad,precio_venta}=req.body;
+    const fecha =fecha_hoy.getFullYear()+"-"+addZero(fecha_hoy.getMonth()+1)+"-"+addZero(fecha_hoy.getDate());
+    const {id_producto,condigo_producto,nombre_producto,cantidad,precio_venta_unidad}=req.body;
+    const precio_venta=precio_venta_unidad*cantidad;
+    const cantidad_producto = await Producto.findById(id_producto,{stock:1});
+    const cantidad_nueva = cantidad_producto.stock-cantidad;
+    await Producto.update({_id:id_producto},{stock:cantidad_nueva});
     const newVenta = new Venta({condigo_producto,nombre_producto,cantidad,precio_venta,fecha,vendedor});
     await newVenta.save();
     res.redirect("/tarea/venta");
@@ -29,8 +30,13 @@ function addZero(i) {
 ventaCtrl.renderVentaForm = async (req, res) => {
   const producto = await Producto.find();
   const producto_vender = await Producto.findById(req.params.id);
-  res.render("venta/venta", { producto ,codigo:producto_vender.codigo,
+  const id_pruducto = [req.params.id];
+  res.render("venta/venta", { producto ,
+    codigo:producto_vender.codigo,
     nombre:producto_vender.nombre_producto,
-    cantidad:producto_vender.stock,precio:producto_vender.precio});
+    cantidad:producto_vender.stock,
+    precio:producto_vender.precio,
+    id_pruducto});
+
 };
 module.exports = ventaCtrl;

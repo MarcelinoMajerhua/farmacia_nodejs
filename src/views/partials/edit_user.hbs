@@ -1,0 +1,38 @@
+<div class="ventana_edit_user" id="vent_user_edit">
+  <div class="card shadow mb-4">
+      <div id="cerrar">
+          <a href="javascript:cerrar_edit_user()" class="d-none d-sm-inline-block btn btn-sm btn-google shadow-sm">
+              <i class="fas fa-window-close fa-sm text-white-50"></i></a>
+      </div>
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Editar Usurio</h6>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                  <form class="user" action="/users/signup/{{id}}?_method=PUT" method="POST">
+                    <input type="hidden" name="_method" value="PUT">
+                      <div class="form-group">
+                        <input type="email" value="{{email}}" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Ingrese nuevo correo">
+                      </div>
+                      <div class="form-group">
+                          <input type="text" value="{{dni}}" class="form-control form-control-user" name="dni" placeholder="Ingrese Dni">
+                      </div>
+                      <div class="form-group">
+                        <input type="text"  value="{{nombre}}"class="form-control form-control-user" name="nombre"  placeholder="Nombre">
+                      </div>
+                      <div class="form-group">
+                        Categoría:<br>
+                        <input type="radio" id="male" name="categoria" value=false>
+                        <label for="male">Vendedor</label>
+                        <input type="radio" id="female" name="categoria" value=true>
+                        <label for="female">Administrados</label><br>
+                      </div>
+                  <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                    Editar
+                  </button>
+                  </form>
+              </div>
+    </div>
+
+</div>

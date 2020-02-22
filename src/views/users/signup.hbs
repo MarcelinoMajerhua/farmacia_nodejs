@@ -11,7 +11,7 @@
                <!-- Nav Item - User Information -->
                <li class="nav-item dropdown no-arrow">
                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.nombre}}</span>
-                   <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-sign-out-alt fa-sm text-white-50"></i> Salir</a>
+                   <a href="/users/logout" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-sign-out-alt fa-sm text-white-50"></i> Salir</a>
                    <a href="javascript:abrir()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-address-book fa-sm text-white-50"></i> Nota</a>
                </li>
            </ul>
@@ -29,12 +29,11 @@
          <div class="row">
            <!-- Pie Chart -->
            {{>signup_barra}}
-
            <!-- Area Chart -->
            <div class="col-xl-8 col-lg-7">
            <div class="card shadow mb-4">
            <div class="card-header py-3">
-             <h6 class="m-0 font-weight-bold text-primary">Lista de Productos</h6>
+             <h6 class="m-0 font-weight-bold text-primary">Lista de Peronal</h6>
            </div>
            <div class="card-body">
              <div class="table-responsive">
@@ -71,8 +70,13 @@
                                          {{else}}
                                          <td>Vendedor</td>
                                          {{/if}}
-                                         <td><a href="/users/signup/{{_id}}"><i class="fas fa-edit"></i></a></td>
-                                         <td><a href="/users/signup/{{_id}}"><i class="fas fa-user-times"></i></a></td>
+                                         <td><a class="btn btn-primary btn-block" href="/users/signup/{{_id}}"><i class="fas fa-edit "></i></a></td>
+                                         <td>
+                                           <form class="user" action="/users/delete/{{_id}}?_method=DELETE" method="post">
+                                             <input type="hidden" name="_method" value="DELETE">
+                                             <button  class="btn btn-danger btn-block"  type="submit"><i class="fas fa-user-times"></i></button>
+                                           </form>
+                                         </td>
                                        </tr>
                                    {{/each}}
                                  </tbody>
@@ -105,3 +109,6 @@
    <!-- End of Content Wrapper -->
 
  </div>
+ {{#if valor}}
+ {{>edit_user}}
+ {{/if}}
