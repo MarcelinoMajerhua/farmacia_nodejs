@@ -1,23 +1,48 @@
 const ventaCtrl ={};
 const Producto= require('../models/Producto');
-var Venta = require('../models/Venta')
-var precio_total= new Array();
+const Venta = require('../models/Venta')
+var producto_vender= new Array();
 ventaCtrl.renderVenta = async (req, res) => {
-    const venta_actual=sumar_precio();
+    const venta_actual=carrito_compra();
     const producto = await Producto.find();
-    res.render('venta/venta',{ producto,user:req.user,visible:false,venta_actual});
+    res.render('venta/venta',{ producto,user:req.user,
+      visible:false,
+      venta_actual,
+      total_monto_pagar:total_monto_pagar()
+    });
 };
-function sumar_precio(precio){
-  if (!precio=="") {
-    precio_total.push(precio);
+ventaCtrl.vender= async (req,res)=>{
+  for (var i = 0; i < carrito_compra().length; i++) {
+    const newVenta = new Venta(carrito_compra()[i]);
+    const cantidad_producto = await Producto.findById(carrito_compra()[i].id_producto,{stock:1,_id:0}); //buscando producto recuperando su stock
+    const cantidad_nueva = cantidad_producto.stock-parseInt(carrito_compra()[i].cantidad);
+    await Producto.updateOne({_id:carrito_compra()[i].id_producto},{stock:cantidad_nueva});
+    await newVenta.save();
   }
-  return precio_total;
+  producto_vender=[];
+  res.redirect("/tarea/venta");
 }
-
+ventaCtrl.cancelar=(req,res)=>{
+  producto_vender=[];
+  res.redirect("/tarea/venta");
+}
+function carrito_compra(producto){
+  if (!producto=="") {
+    producto_vender.push(producto);
+  }
+  return producto_vender;
+}
+function total_monto_pagar(){
+  var total_pagar=0;
+  for (var i = 0; i < carrito_compra().length; i++) {
+    total_pagar=total_pagar+carrito_compra()[i].precio_venta;
+  }
+  return total_pagar.toFixed(2);
+}
 ventaCtrl.delete_venta=(req,res)=>{
-    for (var i = 0; i < sumar_precio().length; i++) {
-      if (req.params.id==sumar_precio()[i].id_producto) {
-        sumar_precio().splice(i,1);
+    for (var i = 0; i < carrito_compra().length; i++) {
+      if (req.params.id==carrito_compra()[i].id_producto) {
+        carrito_compra().splice(i,1);
       }
     }
 
@@ -36,17 +61,11 @@ ventaCtrl.agregar_venta= async (req,res)=>{
       const fecha =fecha_hoy.getFullYear()+"-"+addZero(fecha_hoy.getMonth()+1)+"-"+addZero(fecha_hoy.getDate());
       const {id_producto,condigo_producto,nombre_producto,cantidad,precio_venta_unidad}=req.body;
       const precio_venta=precio_venta_unidad*cantidad;
-      const cantidad_producto = await Producto.findById(id_producto,{stock:1}); //buscando producto recuperando su stock
-      const cantidad_nueva = cantidad_producto.stock-cantidad; //nuevo stock luego de venderse
-  //actualizaciones en cada documento
-      //await Producto.updateOne({_id:id_producto},{stock:cantidad_nueva});
-      //const newVenta = new Venta({condigo_producto,nombre_producto,cantidad,precio_venta,fecha,vendedor});
-      sumar_precio({id_producto,condigo_producto,nombre_producto,cantidad,precio_venta,fecha,vendedor});
-      //await newVenta.save();
+      carrito_compra({id_producto,condigo_producto,nombre_producto,cantidad,precio_venta,fecha,vendedor});
       res.redirect("/tarea/venta");
 }
 ventaCtrl.renderVentaForm = async (req, res) => {
-  const venta_actual=sumar_precio();
+  const venta_actual=carrito_compra();
   const producto = await Producto.find();
   const producto_vender = await Producto.findById(req.params.id);
   const id_pruducto = [req.params.id];
@@ -57,7 +76,8 @@ ventaCtrl.renderVentaForm = async (req, res) => {
     precio:producto_vender.precio,
     id_pruducto,
     visible:true,
-    venta_actual
+    venta_actual,
+    total_monto_pagar:total_monto_pagar()
   });
 
 };

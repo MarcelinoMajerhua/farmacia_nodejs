@@ -25,8 +25,9 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Resumen</h1>
+          <div class="d-sm-flex align-items-center justify-content-between mb-1">
+            <h1 class="h3 mb-0 text-gray-800">Venta</h1>
+            {{>producto_pegatina}}
           </div>
 
           <!-- ptegatina-->
@@ -34,11 +35,17 @@
 
           <div class="row">
             <!-- contenedor para la venta  -->
-            <div class="col-xl-4 col-lg-5">
+            <div class="col-xl-5 col-lg-6">
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 class="m-0 font-weight-bold text-primary">Vender Producto</h6>
+                  <form class="user" action="/tarea/venta/vender" method="post">
+                    <button type="submit" class="btn btn-success btn-block">Vender</button>
+                  </form>
+                  <form class="user" action="/tarea/venta/cancelar" method="post">
+                    <button type="submit" class="btn btn-danger btn-block">Cancelar</button>
+                  </form>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -77,12 +84,12 @@
                         </table>
                     </div>
                 </div>
-
               </div>
+
         </div>
 <!-- contenedor para la venta  -->
             <!-- Area Chart -->
-            <div class="col-xl-8 col-lg-7">
+            <div class="col-xl-7 col-lg-6">
             <div class="card shadow mb-4">
             <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary">Lista de Productos</h6>
