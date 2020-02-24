@@ -1,0 +1,33 @@
+
+<div class="ventana_edit_product" id="vent_product_edit">
+  <div class="card shadow mb-4">
+      <div id="cerrar">
+          <a href="javascript:cerrar_product_user()" class="d-none d-sm-inline-block btn btn-sm btn-google shadow-sm">
+              <i class="fas fa-window-close fa-sm text-white-50"></i></a>
+      </div>
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Editar Usurio</h6>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                <form class="user" action="/tarea/edit_p" method="POST">
+                  <input type="hidden" name="id_edit_p" value="{{producto_editar._id}}">
+                    <div class="form-group">
+                        <input type="text" value="{{producto_editar.codigo}}"class="form-control form-control-user" name="codigo" placeholder="Codigo">
+                    </div>
+                    <div class="form-group">
+                        <input type="text"  value="{{producto_editar.nombre_producto}}"class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto">
+                    </div>
+                    <div class="form-group">
+                      <label for="producto"> Precio por unidad</label>
+                        <input type="number" id="producto" min="0" step="0.01" value="{{producto_editar.precio}}" class="form-control form-control-user" name="precio" placeholder="Precio Unidad">
+                    </div>
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                  Guardar
+                </button>
+                </form>
+              </div>
+    </div>
+
+</div>

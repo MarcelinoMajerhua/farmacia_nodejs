@@ -10,3 +10,6 @@ function editar_usuario(){
 function cerrar_edit_user(){
   document.getElementById("vent_user_edit").style.display="none";
 }
+function cerrar_product_user(){
+  document.getElementById("vent_product_edit").style.display="none";
+}

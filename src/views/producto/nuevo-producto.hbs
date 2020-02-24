@@ -2,9 +2,7 @@
     <!-- Sidebar -->
     {{>barra_lateral}}
     <div id="content-wrapper" class="d-flex flex-column">
-
       <div id="content">
-
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             <ul class="navbar-nav ml-auto">
                 <!-- Nav Item - User Information -->
@@ -15,9 +13,7 @@
                 </li>
             </ul>
         </nav>
-
         <!-- End of Topbar -->
-
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <!-- Page Heading -->
@@ -28,7 +24,6 @@
           <div class="row">
             <!-- Pie Chart -->
             {{>producto_contenedor}}
-
             <!-- Area Chart -->
             <div class="col-xl-8 col-lg-7">
             <div class="card shadow mb-4">
@@ -47,24 +42,33 @@
                                       <th>Nombre</th>
                                       <th>Cantidad Disponible</th>
                                       <th>Precio Unidad</th>
+                                      <th>Agregar</th>
+                                      <th>Editar</th>
                                     </tr>
                                   </thead>
                                   <tfoot>
                                     <tr>
-                                        <th>Código</th>
+                                      <th>Código</th>
                                       <th>Nombre</th>
                                       <th>Cantidad Disponible</th>
                                       <th>Precio Unidad</th>
+                                      <th>Agregar</th>
+                                      <th>Editar</th>
                                     </tr>
                                   </tfoot>
                                   <tbody>
-
                                     {{#each producto}}
                                         <tr>
                                           <td>{{ codigo }}</td>
                                           <td>{{nombre_producto}}</td>
                                           <td>{{stock}}</td>
                                           <td>{{precio}}</td>
+                                          <td>
+                                            <a href="/tarea/agregar_producto/add/{{_id}}"  class="btn btn-success btn-block"><i class="fas fa-plus-square"></i></a>
+                                          </td>
+                                          <td>
+                                            <a href="/tarea/agregar_producto/edit/{{_id}}" class="btn btn-primary btn-block"><i class="fas fa-edit"></i></a>
+                                          </td>
                                         </tr>
                                     {{/each}}
                                   </tbody>
@@ -81,6 +85,12 @@
         <!-- /.container-fluid -->
 
       </div>
+      {{#if valor_producto}}
+      {{>edit_producto}}
+      {{/if}}
+      {{#if valor_add}}
+      {{>add_producto}}
+      {{/if}}
       <!-- End of Main Content -->
 
       <!-- Footer -->

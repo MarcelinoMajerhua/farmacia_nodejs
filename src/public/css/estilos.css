@@ -24,6 +24,19 @@
 	top: 10%;
 	display:;
 }
+.ventana_edit_product{
+	width: 30%;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	text-align: center;
+	padding: 33px;
+	min-height: 250px;
+	border-radius: 22px;
+	position: absolute;
+	left: 34%;
+	top: 10%;
+	display:;
+}
 
 #cerrar{
 	position: absolute;

@@ -1,5 +1,5 @@
 const helpers = {};
-
+var total_venta=0;
 helpers.isAuthenticated = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();

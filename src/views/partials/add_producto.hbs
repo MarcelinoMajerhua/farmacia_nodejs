@@ -1,0 +1,31 @@
+<div class="ventana_edit_product" id="vent_product_edit">
+  <div class="card shadow mb-4">
+      <div id="cerrar">
+          <a href="javascript:cerrar_product_user()" class="d-none d-sm-inline-block btn btn-sm btn-google shadow-sm">
+              <i class="fas fa-window-close fa-sm text-white-50"></i></a>
+      </div>
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Editar Usurio</h6>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                <form class="user" action="/tarea/add_p" method="POST">
+                  <input type="hidden" name="id_add_p" value="{{producto_add._id}}">
+                  <div class="form-group">
+                      <input type="text" value="{{producto_add.codigo}}" class="form-control form-control-user" name="codigo" placeholder="Codigo" readonly>
+                  </div>
+                  <div class="form-group">
+                      <input type="text" value="{{producto_add.nombre_producto}}" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto" readonly>
+                  </div>
+                  <div class="form-group">
+                      <input type="number" min="1" class="form-control form-control-user" name="stock" placeholder="Qué catidad desea agregar?">
+                  </div>
+                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                  Guardar
+                </button>
+                </form>
+              </div>
+    </div>
+
+</div>
