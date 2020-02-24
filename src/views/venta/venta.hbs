@@ -42,27 +42,42 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <form class="user" action="/tarea/venta" method="POST">
-                        <div class="form-group">
-                          <input type="hidden" name="id_producto" value="{{id_pruducto}}">
-                        </div>
-                        <div class="form-group">
-                            <input type="text"  value="{{codigo}}" class="form-control form-control-user" name="condigo_producto" placeholder="Codigo" readonly>
-                        </div>
-                        <div class="form-group">
-                            <input type="text"  value="{{nombre}}" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre" readonly>
-                        </div>
-                        <div class="form-group">
-                            <input type="number" min="1" max="{{cantidad}}" class="form-control form-control-user" name="cantidad" placeholder="Cantidad a vender">
-                        </div>
-                        <div class="form-group">
-                            <input type="number" min="{{precio}}" value="{{precio}}"class="form-control form-control-user" name="precio_venta_unidad" placeholder="Precio de venta la unidad">
-                        </div>
-                    <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
-                      Vender
-                    </button>
-                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-border dataTable">
+                            <thead>
+                              <tr>
+                                <th>Quitar</th>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                              </tr>
+                            </thead>
+                            <tfoot>
+                              <tr>
+                                <th>Quitar</th>
+                                <th>Nombre</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                              </tr>
+                            </tfoot>
+                            <tbody>
+                              {{#each venta_actual}}
+                                <tr>
+                                  <td>
+                                    <form class="user" action="/tarea/venta/delete/{{id_producto}}" method="post">
+                                      <button type="submit" class="btn btn-danger btn-block"><i class="far fa-trash-alt"></i></button>
+                                    </form>
+                                  </td>
+                                  <td>{{nombre_producto}}</td>
+                                  <td>{{cantidad}}</td>
+                                  <td>{{precio_venta}}</td>
+                                </tr>
+                              {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
+
               </div>
         </div>
 <!-- contenedor para la venta  -->
@@ -138,3 +153,6 @@
     <!-- End of Content Wrapper -->
 
   </div>
+  {{#if visible}}
+  {{>popup_venta}}
+  {{/if}}

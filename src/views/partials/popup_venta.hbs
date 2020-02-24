@@ -1,0 +1,37 @@
+
+<div class="ventana_vender_product" id="vent_vender_edit">
+  <div class="card shadow mb-4">
+      <div id="cerrar">
+          <a href="javascript:cerrar_vender_user()" class="d-none d-sm-inline-block btn btn-sm btn-google shadow-sm">
+              <i class="fas fa-window-close fa-sm text-white-50"></i></a>
+      </div>
+              <!-- Card Header - Dropdown -->
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Editar Usurio</h6>
+              </div>
+              <!-- Card Body -->
+              <div class="card-body">
+                <form class="user" action="/tarea/venta" method="POST">
+                    <div class="form-group">
+                      <input type="hidden" name="id_producto" value="{{id_pruducto}}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text"  value="{{codigo}}" class="form-control form-control-user" name="condigo_producto" placeholder="Codigo" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="text"  value="{{nombre}}" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre" readonly>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" min="1" max="{{cantidad}}" class="form-control form-control-user" name="cantidad" placeholder="Cantidad a vender">
+                    </div>
+                    <div class="form-group">
+                        <input type="number" min="{{precio}}" value="{{precio}}"class="form-control form-control-user" name="precio_venta_unidad" placeholder="Precio de venta la unidad">
+                    </div>
+                <button class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                  Vender
+                </button>
+                </form>
+              </div>
+    </div>
+
+</div>

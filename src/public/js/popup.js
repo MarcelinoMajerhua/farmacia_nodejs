@@ -13,3 +13,6 @@ function cerrar_edit_user(){
 function cerrar_product_user(){
   document.getElementById("vent_product_edit").style.display="none";
 }
+function cerrar_vender_user(){
+  document.getElementById("vent_vender_edit").style.display="none";
+}
