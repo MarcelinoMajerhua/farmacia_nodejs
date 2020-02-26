@@ -11,19 +11,19 @@
               </div>
               <!-- Card Body -->
               <div class="card-body">
-                <form class="user" action="/tarea/edit_p" method="POST">
+                <form class="user" action="/tarea/edit_p" method="post">
                   <input type="hidden" name="id_edit_p" value="{{producto_editar._id}}">
                     <div class="form-group">
-                        <input type="text" value="{{producto_editar.codigo}}"class="form-control form-control-user" name="codigo" placeholder="Codigo">
+                        <input type="text" required value="{{producto_editar.codigo}}"class="form-control form-control-user" name="codigo" placeholder="Codigo">
                     </div>
                     <div class="form-group">
-                        <input type="text"  value="{{producto_editar.nombre_producto}}"class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto">
+                        <input type="text" required value="{{producto_editar.nombre_producto}}"class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto">
                     </div>
                     <div class="form-group">
                       <label for="producto"> Precio por unidad</label>
-                        <input type="number" id="producto" min="0" step="0.01" value="{{producto_editar.precio}}" class="form-control form-control-user" name="precio" placeholder="Precio Unidad">
+                        <input type="number" required id="producto" min="0" step="0.01" value="{{producto_editar.precio}}" class="form-control form-control-user" name="precio" placeholder="Precio Unidad">
                     </div>
-                <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                   Guardar
                 </button>
                 </form>

@@ -13,13 +13,13 @@
                   <form class="user" action="/users/signup/{{id}}?_method=PUT" method="POST">
                     <input type="hidden" name="_method" value="PUT">
                       <div class="form-group">
-                        <input type="email" value="{{email}}" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Ingrese nuevo correo">
+                        <input type="email" required value="{{email}}" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Ingrese nuevo correo">
                       </div>
                       <div class="form-group">
-                          <input type="text" value="{{dni}}" class="form-control form-control-user" name="dni" placeholder="Ingrese Dni">
+                          <input type="text" required value="{{dni}}" class="form-control form-control-user" name="dni" placeholder="Ingrese Dni">
                       </div>
                       <div class="form-group">
-                        <input type="text"  value="{{nombre}}"class="form-control form-control-user" name="nombre"  placeholder="Nombre">
+                        <input type="text" required value="{{nombre}}"class="form-control form-control-user" name="nombre"  placeholder="Nombre">
                       </div>
                       <div class="form-group">
                         Categoría:<br>

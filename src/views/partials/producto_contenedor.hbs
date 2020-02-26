@@ -2,22 +2,25 @@
               <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Agregar Producto</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Agregar nuevo producto</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                     <form class="user" action="/tarea/agregar_producto" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" name="codigo" placeholder="Codigo">
+                            <input type="text" required class="form-control form-control-user" name="codigo" placeholder="Codigo">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto">
+                            <input type="text" required class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto">
                         </div>
                         <div class="form-group">
-                            <input type="number" min="1" class="form-control form-control-user" name="stock" placeholder="Cantidad">
+                            <input type="number" required min="1" class="form-control form-control-user" name="stock" placeholder="Cantidad">
                         </div>
                         <div class="form-group">
-                            <input type="number" min="0" step="0.01"  class="form-control form-control-user" name="precio" placeholder="Precio Unidad">
+                            <input type="number" required min="0" step="0.01"  class="form-control form-control-user" name="precio" placeholder="Precio venta unidad">
+                        </div>
+                        <div class="form-group">
+                            <input type="number" required min="0" step="0.01"  class="form-control form-control-user" name="precio_total_compra" placeholder="Precio total de compra">
                         </div>
                     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                       Agregar

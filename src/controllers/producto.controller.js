@@ -1,7 +1,18 @@
 const productoCtrl = {};
 const Producto= require('../models/Producto');
-
-
+const Compra = require('../models/Compra');
+const fecha_actual=fecha();
+var error = new Array();
+function addZero(i) {
+    if (i < 10) {
+        i = '0' + i;
+    }
+    return i;
+}
+function fecha(){
+  const fecha_hoy = new Date();
+  return fecha =fecha_hoy.getFullYear()+"-"+addZero(fecha_hoy.getMonth()+1)+"-"+addZero(fecha_hoy.getDate());
+}
 productoCtrl.renderProducto = async (req, res) => {
     const producto = await Producto.find();
     edit_p={valor_producto:false};
@@ -13,8 +24,11 @@ productoCtrl.renderProducto = async (req, res) => {
       valor_add:add_p.valor_add
     });
 };
-productoCtrl.agregar_producto = async (req,res)=>{
-  const {id_add_p,stock} = req.body;
+productoCtrl.agregar_producto = async (req,res)=>{ //manda los datos el popup add_producto
+  nombre=req.user.nombre;
+  const {id_add_p,codigo,nombre_producto,stock,precio_total_compra} = req.body;
+  const newCompra = new Compra({condigo_producto:codigo,nombre_producto,cantidad:stock,precio_compra:precio_total_compra,fecha:fecha_actual,vendedor:nombre});
+  await newCompra.save();
   const stock_actual = await Producto.findById(id_add_p,{stock:1});
   const stock_nuevo = parseInt(stock) + stock_actual.stock;
   await Producto.updateOne({_id:id_add_p},{stock:stock_nuevo});
@@ -22,7 +36,10 @@ productoCtrl.agregar_producto = async (req,res)=>{
 }
 
 productoCtrl.agregar_nuevo_producto= async (req,res)=>{
-    const {codigo,nombre_producto,stock,precio}=req.body;
+    nombre=req.user.nombre;
+    const {codigo,nombre_producto,stock,precio,precio_total_compra}=req.body;
+    const newCompra = new Compra({condigo_producto:codigo,nombre_producto,cantidad:stock,precio_compra:precio_total_compra,fecha:fecha_actual,vendedor:nombre});
+    await newCompra.save();
     const newProducto = new Producto({codigo,nombre_producto,stock,precio});
     await newProducto.save();
     res.redirect("/tarea/agregar_producto");
