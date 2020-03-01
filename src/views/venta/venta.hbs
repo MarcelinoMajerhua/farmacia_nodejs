@@ -7,18 +7,7 @@
       <!-- Main Content -->
       <div id="content">
         <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-        <!-- Topbar Search -->
-            <!-- Topbar Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Nav Item - User Information -->
-                <li class="nav-item dropdown no-arrow">
-                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{user.nombre}}</span>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-sign-out-alt fa-sm text-white-50"></i> Salir</a>
-                    <a href="javascript:abrir()" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-address-book fa-sm text-white-50"></i> Nota</a>
-                </li>
-            </ul>
-        </nav>
+        {{>nav}}
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -86,7 +75,7 @@
                 </div>
               </div>
 
-        </div>
+            </div>
 <!-- contenedor para la venta  -->
             <!-- Area Chart -->
             <div class="col-xl-7 col-lg-6">

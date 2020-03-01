@@ -105,7 +105,6 @@ reporteCtrl.renderReporte_personal_venta= async(req,res)=>{
 
   }
 }
-
 reporteCtrl.renderReporte_all_compra=async(req,res)=>{
   const nombre_vendedor= await Compra.aggregate([
     {$group:{_id:"$vendedor"}}])

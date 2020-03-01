@@ -1,6 +1,7 @@
 const ventaCtrl ={};
 const Producto= require('../models/Producto');
 const Venta = require('../models/Venta')
+const {error,getError} = require('../helpers/errors')
 var producto_vender= new Array();
 ventaCtrl.renderVenta = async (req, res) => {
     const venta_actual=carrito_compra();
@@ -10,6 +11,7 @@ ventaCtrl.renderVenta = async (req, res) => {
       venta_actual,
       total_monto_pagar:total_monto_pagar()
     });
+
 };
 ventaCtrl.vender= async (req,res)=>{
   for (var i = 0; i < carrito_compra().length; i++) {
@@ -48,7 +50,6 @@ ventaCtrl.delete_venta=(req,res)=>{
 
   res.redirect("/tarea/venta");
 }
-
 ventaCtrl.agregar_venta= async (req,res)=>{
   function addZero(i) {
       if (i < 10) {

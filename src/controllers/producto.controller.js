@@ -1,8 +1,8 @@
 const productoCtrl = {};
 const Producto= require('../models/Producto');
 const Compra = require('../models/Compra');
+const {error,getError,evaluar_error_exitencia,deleteError} = require('../helpers/errors');
 const fecha_actual=fecha();
-var error = new Array();
 function addZero(i) {
     if (i < 10) {
         i = '0' + i;
@@ -17,11 +17,14 @@ productoCtrl.renderProducto = async (req, res) => {
     const producto = await Producto.find();
     edit_p={valor_producto:false};
     add_p={valor_add:false};
+    const error_total = getError();
+    deleteError();
     res.render('producto/nuevo-producto',{ producto ,
       user:req.user,
       categoria:req.user.categoria,
       valor_producto:edit_p.valor_producto,
-      valor_add:add_p.valor_add
+      valor_add:add_p.valor_add,
+      error_total
     });
 };
 productoCtrl.agregar_producto = async (req,res)=>{ //manda los datos el popup add_producto
@@ -34,18 +37,15 @@ productoCtrl.agregar_producto = async (req,res)=>{ //manda los datos el popup ad
   await Producto.updateOne({_id:id_add_p},{stock:stock_nuevo});
   res.redirect("/tarea/agregar_producto")
 }
-
 productoCtrl.agregar_nuevo_producto= async (req,res)=>{
     nombre=req.user.nombre;
-    const {codigo,nombre_producto,stock,precio,precio_total_compra}=req.body;
-    const newCompra = new Compra({condigo_producto:codigo,nombre_producto,cantidad:stock,precio_compra:precio_total_compra,fecha:fecha_actual,vendedor:nombre});
-    await newCompra.save();
-    const newProducto = new Producto({codigo,nombre_producto,stock,precio});
-    await newProducto.save();
+    var {codigo,nombre_producto,stock,precio,precio_total_compra}=req.body;
+    newCompra = {condigo_producto:codigo,nombre_producto,cantidad:stock,precio_compra:precio_total_compra,fecha:fecha_actual,vendedor:nombre};
+    newProducto={codigo,nombre_producto,stock,precio};
+    evaluar_error_exitencia(codigo,nombre_producto,"add",[newCompra,newProducto]);
     res.redirect("/tarea/agregar_producto");
 }
-
-productoCtrl.renderProducto_edit=async(req,res)=>{
+productoCtrl.renderProducto_edit=async(req,res)=>{//carga en la pantalla
   const producto = await Producto.find();
   edit_p={valor_producto:true};
   add_p={valor_add:false};
@@ -60,7 +60,9 @@ productoCtrl.renderProducto_edit=async(req,res)=>{
 }
 productoCtrl.edit_producto = async (req,res)=>{
   const {id_edit_p,codigo,nombre_producto,precio} = req.body;
-  await Producto.updateOne({_id:id_edit_p},{codigo:codigo,nombre_producto:nombre_producto,precio:precio});
+  id={_id:id_edit_p};
+  dato_actualizar={codigo:codigo,nombre_producto:nombre_producto,precio:precio};
+  evaluar_error_exitencia(codigo,nombre_producto,"edit",[id,dato_actualizar]);
   res.redirect("/tarea/agregar_producto");
 }
 productoCtrl.renderProducto_add=async(req,res)=>{
