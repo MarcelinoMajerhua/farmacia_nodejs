@@ -24,7 +24,6 @@ reporteCtrl.renderReporte_personal_venta= async(req,res)=>{
   const nombre_vendedor= await Venta.aggregate([
     {$group:{_id:"$vendedor"}}])//recuperando todos los vendedores
   if (!(nombre=="Todos") &&fecha=="") {//cuando tiene nombre pero no fecha
-    console.log("aki");
     const venta = await Venta.find({"vendedor":nombre});
     if (venta.length!==0) {
       const total_pagar= await Venta.aggregate([
@@ -106,30 +105,31 @@ reporteCtrl.renderReporte_personal_venta= async(req,res)=>{
   }
 }
 reporteCtrl.renderReporte_all_compra=async(req,res)=>{
-  const nombre_vendedor= await Compra.aggregate([
+  const nombre_comprador= await Compra.aggregate([//consultando el nombre de los compradores
     {$group:{_id:"$vendedor"}}])
-  const total_compra= await Compra.aggregate([
+    console.log(nombre_comprador);
+  const total_compra= await Compra.aggregate([//consultado el total de las compras
   {$group:{_id:null,
     "total":{$sum:"$precio_compra"}}}
   ]);
-const compra =await Compra.find();
+const compra =await Compra.find(); // el total de las compras de todo los tiempos
 res.render('reporte/reporte',
 {
   compra,
-  nombre_vendedor,
+  nombre_comprador,
   total:total_compra[0].total,
 });
 }
 reporteCtrl.renderReporte_personal_compra=async(req,res)=>{
   const nombre = req.body.nombre;
   const fecha = req.body.fecha;
-  const nombre_vendedor= await Compra.aggregate([
+  const nombre_comprador= await Compra.aggregate([
     {$group:{_id:"$vendedor"}}])//recuperando todos los vendedores
 
   if (!(nombre=="Todos") &&fecha=="") {//cuando tiene nombre pero no fecha
     const compra = await Compra.find({"vendedor":nombre});
     if (compra.length!==0) {
-      const total_compra= await Venta.aggregate([
+      const total_compra= await Compra.aggregate([
         {$match:{"vendedor":nombre}},
         {$group:{_id:null,
           "total":{$sum:"$precio_compra"}}}
@@ -137,7 +137,7 @@ reporteCtrl.renderReporte_personal_compra=async(req,res)=>{
         res.render('reporte/reporte',
           {
             compra,
-            nombre_vendedor,
+            nombre_comprador,
             total:total_compra[0].total,
           });
     }else {
@@ -145,7 +145,7 @@ reporteCtrl.renderReporte_personal_compra=async(req,res)=>{
       res.render('reporte/reporte',
         {
           compra,
-          nombre_vendedor,
+          nombre_comprador,
           total:total_compra[0].total,
         });
     }
@@ -160,7 +160,7 @@ reporteCtrl.renderReporte_personal_compra=async(req,res)=>{
         res.render('reporte/reporte',
           {
             compra,
-            nombre_vendedor,
+            nombre_comprador,
             total:total_compra[0].total,
           });
     }else {
@@ -168,7 +168,7 @@ reporteCtrl.renderReporte_personal_compra=async(req,res)=>{
       res.render('reporte/reporte',
         {
           compra,
-          nombre_vendedor,
+          nombre_comprador,
           total:total_compra[0].total,
         });
     }
@@ -186,7 +186,7 @@ reporteCtrl.renderReporte_personal_compra=async(req,res)=>{
         res.render('reporte/reporte',
           {
             compra,
-            nombre_vendedor,
+            nombre_comprador,
             total:total_compra[0].total,
           });
     }else {
@@ -194,7 +194,7 @@ reporteCtrl.renderReporte_personal_compra=async(req,res)=>{
       res.render('reporte/reporte',
         {
           compra,
-          nombre_vendedor,
+          nombre_comprador,
           total:total_compra[0].total,
         });
     }

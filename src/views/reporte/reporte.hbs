@@ -41,9 +41,15 @@
                     <div class="form-group">
                       <select value="inicial"class="form-control" name="nombre">
                         <option>Todos</option>
-                        {{#each nombre_vendedor}}
-                         <option>{{_id}}</option>
-                       {{/each}}
+                        {{#if visible_venta}}
+                            {{#each nombre_vendedor}}
+                           <option>{{_id}}</option>
+                           {{/each}}
+                       {{else}}
+                           {{#each nombre_comprador}}
+                          <option>{{_id}}</option>
+                          {{/each}}
+                       {{/if}}
                        </select>
                     </div>
                     <div class="form-group">
