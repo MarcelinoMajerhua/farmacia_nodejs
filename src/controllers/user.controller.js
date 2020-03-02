@@ -1,4 +1,5 @@
 const usersCtrl = {};
+const {getError,deleteError,error} = require('../helpers/errors');
 
 // Models
 const User = require('../models/User');
@@ -7,9 +8,13 @@ const User = require('../models/User');
 const passport = require("passport");
 
 usersCtrl.renderSignUpForm =  async(req, res) => {
+    const total_error=getError();
     const usuario = await User.find();
+    deleteError();
     const user_edit={valor:false};
-    res.render('users/signup',{usuario,valor:user_edit.valor});
+    res.render('users/signup',{usuario,valor:user_edit.valor,
+      total_error
+    });
 };
 
 usersCtrl.updateUser=async(req,res)=>{
@@ -34,14 +39,15 @@ usersCtrl.renderSignUpForm_edit =  async(req, res) => {
 };
 
 usersCtrl.singup = async (req, res) => {
-  let errors = [];
-  const { email, password, dni,nombre,categoria} = req.body;
-  if (password.length < 4) {
-    errors.push({ text: "Passwords must be at least 4 characters." });
+  const { email, password, celular,nombre,categoria} = req.body;
+  const total_error=getError();
+  deleteError();
+  if (password.length < 8) {
+    error({ mensaje: "La contraseña tiene que ser mayor a 8 caracteres." });
   }
-  if (errors.length > 0) {
+  if (total_error.length > 0) {
     res.render("users/signup", {
-      errors,
+      total_error,
       name,
       email,
       password
@@ -50,11 +56,11 @@ usersCtrl.singup = async (req, res) => {
     // Look for email coincidence
     const emailUser = await User.findOne({ email: email });
     if (emailUser) {
-      req.flash("error_msg", "The Email is already in use.");
+      error({mensaje:"El email " + emailUser.email +" está en uso."})
       res.redirect("/users/signup");
     } else {
       // Saving a New User
-      const newUser = new User({  email, password, dni,nombre,categoria });
+      const newUser = new User({  email, password, celular,nombre,categoria });
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
       req.flash("success_msg", "You are registered.");

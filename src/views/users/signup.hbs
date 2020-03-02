@@ -16,7 +16,9 @@
          <div class="d-sm-flex align-items-center justify-content-between mb-4">
            <h1 class="h3 mb-0 text-gray-800">Resumen</h1>
          </div>
-
+         {{#each total_error}}
+         {{>error}}
+         {{/each}}
          <div class="row">
            <!-- Pie Chart -->
            {{>signup_barra}}
@@ -35,7 +37,7 @@
                                   <thead>
                                    <tr>
                                      <th>Nombre</th>
-                                     <th>Dni</th>
+                                     <th>Telefono</th>
                                      <th>Categoria</th>
                                      <th>Editar</th>
                                      <th>Borrar</th>
@@ -44,7 +46,7 @@
                                  <tfoot>
                                    <tr>
                                      <th>Nombre</th>
-                                     <th>Dni</th>
+                                     <th>Telefono</th>
                                      <th>Categoria</th>
                                      <th>Editar</th>
                                      <th>Borrar</th>
@@ -55,7 +57,7 @@
                                    {{#each usuario}}
                                        <tr>
                                          <td>{{nombre}}</td>
-                                         <td>{{dni}}</td>
+                                         <td>{{celular}}</td>
                                          {{#if categoria}}
                                          <td>Administrador</td>
                                          {{else}}
