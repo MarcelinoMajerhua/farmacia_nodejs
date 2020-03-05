@@ -6,14 +6,15 @@
       </div>
               <!-- Card Header - Dropdown -->
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Editar Usurio</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Agregar producto</h6>
               </div>
               <!-- Card Body -->
-              <div class="card-body">
+              <div class="card-body ">
                 <form class="user" action="/tarea/add_p" method="POST">
                   <input type="hidden" name="id_add_p" value="{{producto_add._id}}">
                   <div class="form-group">
-                      <input type="text" required value="{{producto_add.codigo}}" class="form-control form-control-user" name="codigo" placeholder="Codigo" readonly>
+                      <label for="codigo_p">Código</label>
+                      <input id="codigo_p" type="text" required value="{{producto_add.codigo}}" class="form-control form-control-user" name="codigo" placeholder="Codigo" readonly>
                   </div>
                   <div class="form-group">
                       <input type="text" required value="{{producto_add.nombre_producto}}" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre Producto" readonly>
@@ -22,7 +23,7 @@
                       <input type="number" required min="1" class="form-control form-control-user" name="stock" placeholder="Qué catidad desea agregar?">
                   </div>
                   <div class="form-group">
-                      <input type="number" required min="0" step="0.01"  class="form-control form-control-user" name="precio_total_compra" placeholder="Precio total de compra">
+                    <input  type="number" required min="0" step="0.01"  class="form-control form-control-user" name="precio_total_compra" placeholder="Precio total de compra">
                   </div>
                 <button type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
                   Guardar

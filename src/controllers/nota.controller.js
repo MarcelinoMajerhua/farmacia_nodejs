@@ -2,7 +2,8 @@ const notaCtrl = {};
 const Nota = require('../models/Nota')
 notaCtrl.addNote = async(req, res) => {
   const {titulo,contenido} = req.body;
-  const newNota = new Nota({titulo,contenido});
+  const redactor = req.user.nombre;
+  const newNota = new Nota({titulo,contenido,redactor});
   await newNota.save();
   res.redirect("/inicio");
 

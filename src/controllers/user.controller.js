@@ -1,5 +1,5 @@
 const usersCtrl = {};
-const {getError,deleteError,error} = require('../helpers/errors');
+const {getError,deleteError,error,evaluar_exitencia_usuario} = require('../helpers/errors');
 
 // Models
 const User = require('../models/User');
@@ -18,8 +18,10 @@ usersCtrl.renderSignUpForm =  async(req, res) => {
 };
 
 usersCtrl.updateUser=async(req,res)=>{
-  const {email,dni,nombre,categoria}=req.body;
-  await User.findByIdAndUpdate(req.params.id,{email,dni,nombre,categoria});
+  const id = req.params.id;
+  evaluar_exitencia_usuario()
+  user_update={email,dni,nombre,categoria}=req.body;
+  evaluar_exitencia_usuario(user_update,id,"edit");
   res.redirect("/users/signup");
 }
 
@@ -43,7 +45,7 @@ usersCtrl.singup = async (req, res) => {
   const total_error=getError();
   deleteError();
   if (password.length < 8) {
-    error({ mensaje: "La contraseña tiene que ser mayor a 8 caracteres." });
+    error.push({ mensaje: "La contraseña tiene que ser mayor a 8 caracteres." });
   }
   if (total_error.length > 0) {
     res.render("users/signup", {
@@ -54,16 +56,15 @@ usersCtrl.singup = async (req, res) => {
     });
   } else {
     // Look for email coincidence
-    const emailUser = await User.findOne({ email: email });
+    const emailUser = await User.findOne({$or:[{email:email},{nombre:nombre}]});
     if (emailUser) {
-      error({mensaje:"El email " + emailUser.email +" está en uso."})
+      error({mensaje:"El email " + email +" o el nombre "+nombre + " ya está en uso."})
       res.redirect("/users/signup");
     } else {
       // Saving a New User
       const newUser = new User({  email, password, celular,nombre,categoria });
       newUser.password = await newUser.encryptPassword(password);
       await newUser.save();
-      req.flash("success_msg", "You are registered.");
       res.redirect("/users/signup");
     }
   }

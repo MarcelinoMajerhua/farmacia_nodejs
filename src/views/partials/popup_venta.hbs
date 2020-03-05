@@ -7,7 +7,7 @@
       </div>
               <!-- Card Header - Dropdown -->
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Editar Usurio</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Venta</h6>
               </div>
               <!-- Card Body -->
               <div class="card-body">
@@ -22,10 +22,11 @@
                         <input type="text"  value="{{nombre}}" class="form-control form-control-user" name="nombre_producto" placeholder="Nombre" readonly>
                     </div>
                     <div class="form-group">
-                        <input type="number" min="1" max="{{cantidad}}" class="form-control form-control-user" name="cantidad" placeholder="Cantidad a vender">
+                        <input required type="number" min="1" max="{{cantidad}}" class="form-control form-control-user" name="cantidad" placeholder="Cantidad a vender">
                     </div>
                     <div class="form-group">
-                        <input type="number" min="{{precio}}" value="{{precio}}"class="form-control form-control-user" name="precio_venta_unidad" placeholder="Precio de venta la unidad">
+                      <label for="precio_unidad">Precio unidad</label>
+                        <input id="precio_unidad" type="number" min="{{precio}}" value="{{precio}}"class="form-control form-control-user" name="precio_venta_unidad" placeholder="Precio de venta la unidad">
                     </div>
                 <button class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                   Vender

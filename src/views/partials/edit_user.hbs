@@ -13,17 +13,17 @@
                   <form class="user" action="/users/signup/{{id}}?_method=PUT" method="POST">
                     <input type="hidden" name="_method" value="PUT">
                       <div class="form-group">
-                        <input type="email" required value="{{email}}" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Ingrese nuevo correo">
+                        <input type="email" required autocomplete="off" value="{{email}}" class="form-control form-control-user" name="email" aria-describedby="emailHelp" placeholder="Ingrese nuevo correo">
                       </div>
                       <div class="form-group">
-                          <input type="text" required value="{{dni}}" class="form-control form-control-user" name="dni" placeholder="Ingrese Dni">
+                          <input type="text" required autocomplete="off" value="{{dni}}" class="form-control form-control-user" name="dni" placeholder="Ingrese Dni">
                       </div>
                       <div class="form-group">
-                        <input type="text" required value="{{nombre}}"class="form-control form-control-user" name="nombre"  placeholder="Nombre">
+                        <input type="text" style="text-transform:lowercase" required  autocomplete="off" value="{{nombre}}"class="form-control form-control-user" name="nombre"  placeholder="Nombre">
                       </div>
                       <div class="form-group">
                         Categoría:<br>
-                        <input type="radio" id="male" name="categoria" value=false>
+                        <input type="radio" checked id="male" name="categoria" value=false>
                         <label for="male">Vendedor</label>
                         <input type="radio" id="female" name="categoria" value=true>
                         <label for="female">Administrados</label><br>

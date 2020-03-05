@@ -2,15 +2,18 @@
   {{#each nota}}
   <div class="col-md-4">
     <div class="card">
+      <div class="card-header">
+        {{ titulo }}
+      </div>
       <div class="card-body">
-        <h4 class="card-title d-flex justify-content-between align-items-center">
-          {{ titulo }}
-        </h4>
         <p>{{ contenido }} </p>
         <!-- DELETE REQUEST -->
         <form action="/nota/delete/{{_id}}" method="POST">
           <button type="submit" class="btn btn-danger btn-block btn-sm">Borrar</button>
         </form>
+      </div>
+      <div class="card-footer">
+        {{redactor}}
       </div>
     </div>
   </div>
