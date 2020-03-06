@@ -39,10 +39,12 @@ productoCtrl.agregar_producto = async (req,res)=>{ //manda los datos el popup ad
 }
 productoCtrl.agregar_nuevo_producto= async (req,res)=>{
     nombre=req.user.nombre;
-    var {codigo,nombre_producto,stock,precio,precio_total_compra}=req.body;
-    newCompra = {condigo_producto:codigo,nombre_producto,cantidad:stock,precio_compra:precio_total_compra,fecha:fecha_actual,vendedor:nombre};
-    newProducto={codigo,nombre_producto,stock,precio};
-    evaluar_error_exitencia(codigo,nombre_producto,"add",[newCompra,newProducto]);
+    var {codigo,tipo_producto,nombre_producto,stock,precio,precio_total_compra}=req.body;
+    var nombre_compuesto = tipo_producto + " " +nombre_producto;
+    console.log(nombre_compuesto);
+    newCompra = {condigo_producto:codigo,nombre_producto:nombre_compuesto,cantidad:stock,precio_compra:precio_total_compra,fecha:fecha_actual,vendedor:nombre};
+    newProducto={codigo,nombre_producto:nombre_compuesto,stock,precio};
+    evaluar_error_exitencia(codigo,nombre_compuesto,"add",[newCompra,newProducto]);
     res.redirect("/tarea/agregar_producto");
 }
 productoCtrl.renderProducto_edit=async(req,res)=>{//carga en la pantalla

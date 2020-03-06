@@ -17,7 +17,7 @@ errors.evaluar_error_exitencia=async (codigo,nombre,metodo,dato)=>{ //funcion pa
   if (metodo=="add") {
     const exitencia = await Producto.find({$or:[{codigo:codigo},{nombre_producto:nombre}]});
     if (exitencia.length!==0) {//exite por lo menos un elemento un error
-      total_error.push({mensaje:"el producto "+ exitencia[0].nombre_producto +" con codigo "+exitencia[0].codigo+" ya existe"})
+      total_error.push({mensaje:"el nombre "+ exitencia[0].nombre_producto +" o el código "+exitencia[0].codigo+" ya existe, cámbielo por favor."})
     }
     if (total_error.length==0) {
       const newCompra = new Compra(dato[0]);

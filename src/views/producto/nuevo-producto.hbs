@@ -25,6 +25,7 @@
               <h6 class="m-0 font-weight-bold text-primary">Lista de Productos</h6>
             </div>
             <div class="card-body">
+
               <div class="table-responsive">
                   <div class="dataTables_wrapper dt-bootstrap4" id="dataTable_wrapper">
                       <div class="row">
@@ -37,7 +38,9 @@
                                       <th>Cantidad Disponible</th>
                                       <th>Precio Unidad</th>
                                       <th>Agregar</th>
+                                      {{#if user.categoria}}
                                       <th>Editar</th>
+                                      {{/if}}
                                     </tr>
                                   </thead>
                                   <tfoot>
@@ -47,7 +50,9 @@
                                       <th>Cantidad Disponible</th>
                                       <th>Precio Unidad</th>
                                       <th>Agregar</th>
+                                      {{#if user.categoria}}
                                       <th>Editar</th>
+                                      {{/if}}
                                     </tr>
                                   </tfoot>
                                   <tbody>
@@ -60,9 +65,11 @@
                                           <td>
                                             <a href="/tarea/agregar_producto/add/{{_id}}"  class="btn btn-success btn-block"><i class="fas fa-plus-square"></i></a>
                                           </td>
-                                          <td>
-                                            <a href="/tarea/agregar_producto/edit/{{_id}}" class="btn btn-primary btn-block"><i class="fas fa-edit"></i></a>
-                                          </td>
+                                            {{#if ../user.categoria}}
+                                              <td>
+                                                <a href="/tarea/agregar_producto/edit/{{_id}}" class="btn btn-primary btn-block"><i class="fas fa-edit"></i></a>
+                                              </td>
+                                            {{/if}}
                                         </tr>
                                     {{/each}}
                                   </tbody>
