@@ -80,4 +80,8 @@ productoCtrl.renderProducto_add=async(req,res)=>{
     producto_add
   });
 }
+productoCtrl.delete_producto=async(req,res)=>{
+  await Producto.findByIdAndDelete(req.params.id);
+  res.redirect("/tarea/agregar_producto")
+}
 module.exports = productoCtrl;
