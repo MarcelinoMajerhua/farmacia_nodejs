@@ -10,7 +10,6 @@ ventaCtrl.renderVenta = async (req, res) => {
       visible:false,
       venta_actual,
       total_monto_pagar:total_monto_pagar(),
-      mensaje_succes
     });
 
 };
