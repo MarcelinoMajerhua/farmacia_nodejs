@@ -10,6 +10,9 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+#archivos_bat
+start_pm2.bat
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
