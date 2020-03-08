@@ -1,7 +1,7 @@
 const ventaCtrl ={};
 const Producto= require('../models/Producto');
-const Venta = require('../models/Venta')
-const {error,getError} = require('../helpers/errors')
+const Venta = require('../models/Venta');
+const {error,getError} = require('../helpers/errors');
 var producto_vender= new Array();
 ventaCtrl.renderVenta = async (req, res) => {
     const venta_actual=carrito_compra();
@@ -9,7 +9,8 @@ ventaCtrl.renderVenta = async (req, res) => {
     res.render('venta/venta',{ producto,user:req.user,
       visible:false,
       venta_actual,
-      total_monto_pagar:total_monto_pagar()
+      total_monto_pagar:total_monto_pagar(),
+      mensaje_succes
     });
 
 };

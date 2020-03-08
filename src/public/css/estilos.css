@@ -55,3 +55,11 @@
 	position: absolute;
 	right: 1px;
 }
+
+table>body>tr>td{
+	vertical-align: middle !important;
+}
+
+.btn-group, .btn-group-vertical{
+	position: absolute !important;
+}

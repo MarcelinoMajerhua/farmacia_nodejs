@@ -39,7 +39,7 @@ $(document).ready(function() {
   $('#dataTable_reporte').DataTable({
       language:lenguage,
       responsive: "true",
-      dom: 'Bfrtil',
+      dom: 'Bfrtilp',
       buttons:[
         {
           extend: 'excelHtml5',
