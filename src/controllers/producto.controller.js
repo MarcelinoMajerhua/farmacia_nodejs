@@ -41,7 +41,6 @@ productoCtrl.agregar_nuevo_producto= async (req,res)=>{
     nombre=req.user.nombre;
     var {codigo,tipo_producto,nombre_producto,stock,precio,precio_total_compra}=req.body;
     var nombre_compuesto = tipo_producto + " " +nombre_producto;
-    console.log(nombre_compuesto);
     newCompra = {condigo_producto:codigo,nombre_producto:nombre_compuesto,cantidad:stock,precio_compra:precio_total_compra,fecha:fecha_actual,vendedor:nombre};
     newProducto={codigo,nombre_producto:nombre_compuesto,stock,precio};
     evaluar_error_exitencia(codigo,nombre_compuesto,"add",[newCompra,newProducto]);
