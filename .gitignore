@@ -46,10 +46,12 @@ build/Release
 
 # Dependency directories
 node_modules/
+data/
 jspm_packages/
 
 # TypeScript v1 declaration files
 typings/
+
 
 # TypeScript cache
 *.tsbuildinfo

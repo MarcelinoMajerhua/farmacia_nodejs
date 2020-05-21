@@ -1,0 +1,21 @@
+version: "2"
+volumes:
+  mongodb_data:
+    driver: local
+services:
+  app:
+    container_name: farmacia
+    restart: always
+    build: .
+    ports:
+      - '3000:3000'
+    links:
+      - mongo
+  mongo:
+    container_name: mongo
+    restart: always
+    image: mongo:4.2.2
+    volumes:
+      - mongodb_data:/data/db
+    ports:
+      - 27017:27017
